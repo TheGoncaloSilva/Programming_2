@@ -1,0 +1,5 @@
+*#*#*#*#*#*#*#*#*#*#*# Texto do ficheiro 1 *#*#*#*#*#*#*#*#*#*#*#
+
+Este texto deve ser copiado ou sobreposto de acordo com a intenção e vontade do utilizador
+
+*#*#*#*#*#*#*#*#*#*#*# Fim do Texto do ficheiro 1 *#*#*#*#*#*#*#*#*#*#*#

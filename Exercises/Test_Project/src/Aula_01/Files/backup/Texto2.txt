@@ -1,0 +1,9 @@
+*#*#*#*#*#*#*#*#*#*#*# Texto do ficheiro 2 *#*#*#*#*#*#*#*#*#*#*#
+
+Este texto deve ser copiado ou sobreposto de acordo com a intenção e vontade do utilizador
+
+Aqui pode ser colada qualquer coisa
+
+Teste 123, teste 234
+
+*#*#*#*#*#*#*#*#*#*#*# Fim do Texto do ficheiro 2 *#*#*#*#*#*#*#*#*#*#*#
