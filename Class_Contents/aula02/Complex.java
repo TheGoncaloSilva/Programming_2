@@ -1,4 +1,3 @@
-
 public class Complex {
   private double re; // stores the real part
   private double im; // stores the imaginary part
@@ -9,6 +8,13 @@ public class Complex {
     re = real;
     im = imag;
   }
+  
+  // Constructor with one argument
+  public Comples(double real) {
+	 re = real;
+	 im = 0.0;
+  }
+  
 
   public double real() {   // real part
     return re;
