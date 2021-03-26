@@ -15,6 +15,17 @@ public class Data {
     ano = today.get(Calendar.YEAR);
   }
   
+  public Data(String date) {
+	  String[] parts = date.split("-");
+	  if(dataValida(Integer.parseInt(parts[2]), Integer.parseInt(parts[1]), Integer.parseInt(parts[0]))) {
+		  dia = Integer.parseInt(parts[2]);
+		  mes = Integer.parseInt(parts[1]);
+		  ano = Integer.parseInt(parts[0]);
+	  }else {
+		  System.exit(0);
+	  }
+  }
+  
   public int ano() { return ano;}
   
   public int mes() { return mes;}
@@ -92,7 +103,7 @@ public class Data {
 
 
   public void seguinte() {    
-	  dia++;
+	dia++;
     if(dataValida(dia, mes, ano)) {
 
     }else {
@@ -107,7 +118,6 @@ public class Data {
     }
     
   }
-
 
 }
 

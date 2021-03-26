@@ -1,0 +1,20 @@
+package Aula_03_ex_3_5;
+
+public class Room {
+	private String place;
+	private Point cie, csd;
+	
+	public Room() {} // Construtor por omissão
+	
+	public Room(Point csd, Point cie, String place) {
+		this.place = place;
+		this.cie = cie;
+		this.csd = csd;
+	}
+	
+	public String roomType() { return place; }
+	public Point bottomLeft(){ return cie;	}
+	public Point topRight() { return csd; }
+	public double geomCenter() { return 0; }
+	public double area() { return 0; }
+}
