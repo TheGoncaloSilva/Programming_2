@@ -25,7 +25,7 @@ public class TestHouses {
 	    out.println("\nAntes de introduzir divisões: ");
 	    out.println("- Divisões registadas: " + h.size());
 	    out.println("- Capacidade actual  : " + h.maxSize());
-
+	    
 	    h.addRoom(new Room(p1,p8, "hall"));
 	    h.addRoom(new Room(p3,p2, "sala"));
 	    h.addRoom(new Room(p4,p6, "corredor"));
