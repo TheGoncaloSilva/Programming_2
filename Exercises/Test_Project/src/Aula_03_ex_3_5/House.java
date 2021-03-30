@@ -23,11 +23,11 @@ public class House {
 	
 	public void addRoom(Room data) { // Adicionar uma nova divisão
 		rooms[count++] = data;
-		if(count >= 8 && count % nDivExtra == 0) {
+		if(count == rooms.length) {
 			nDiv = rooms.length + nDivExtra; // Número máximo de divisões com o incremento do array
 			Room[] rooms2 = new Room[nDiv]; // Criar um array novo com o tamanho superior ao antigo
 			for(int i = 0; i < count; i++) {
-				rooms2 = rooms;
+				rooms2[i] = rooms[i];
 			}
 			rooms = rooms2;
 		}
@@ -38,7 +38,7 @@ public class House {
 		return rooms[n];}
 	
 	public double area() {
-		int aux = 0;
+		double aux = 0;
 		for(int i = 0; i < count; i++) {
 			aux += rooms[i].area();
 		}
@@ -76,12 +76,16 @@ public class House {
 	
 	public double averageRoomDistance() {
 		double dist = 0; 
-		for(int i = 0; i < (count - 1); i++) {
-			// calcular a distância média entre duas divisões por vez
-			dist += Math.sqrt(Math.pow(rooms[i].geomCenter().y() - rooms[i].geomCenter().x(), 2) + 
-					Math.pow(rooms[i + 1].geomCenter().y() - rooms[i + 1].geomCenter().x(), 2));
+		int extra = 0;
+		for(int i = 0; i < count; i++) {
+			for(int j = i + 1; j < count; j++) {
+				// calcular a distância média entre duas divisões por vez
+				dist += rooms[i].geomCenter().distTo(rooms[j].geomCenter());
+				extra++; //contar a quantidade de combinações possíveis
+			}
+			
 		}
 		// devolver a média da distância entre as divisões
-		return (dist / count);
+		return (dist / extra);
 	}
 }

@@ -15,7 +15,7 @@ public class Room {
 	public String roomType() { return place; }
 	public Point bottomLeft(){ return cie;	}
 	public Point topRight() { return csd; }
-	public Point geomCenter() { return new Point((topRight().x() + bottomLeft().y()/2), (topRight().y() + bottomLeft().x()/2)); }
+	public Point geomCenter() { return new Point(((bottomLeft().x() + topRight().x())/2), ((bottomLeft().y() + topRight().y())/2)); }
 	public double area() {
 		double result = (topRight().x() - bottomLeft().x()) * (topRight().y() - bottomLeft().y());
 		
