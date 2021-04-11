@@ -1,5 +1,4 @@
-package Aula_04;
-
+package Aula_04_ex_4_7;
 /**
  * Tipo de dados representando uma fracão.
  * Nesta versão pretende-se garantir um invariante (interno) mais forte:
@@ -18,7 +17,7 @@ package Aula_04;
 public class Fraction implements Comparable<Fraction>
 {
   private int num;
-  private int den;
+  private int den, maxDiv;
   public static Fraction ZERO = new Fraction(0, 1);
   public static Fraction ONE = new Fraction(1, 1);
 
@@ -27,10 +26,14 @@ public class Fraction implements Comparable<Fraction>
    *  @param den denominador da nova fração.
    *  <b>Exige (pré-condição):</b> den != 0.
    */
-  public Fraction(int num, int den) {
-    assert den != 0; // check precondition
-    this.num = num;
-    this.den = den;
+  public Fraction(int num1, int den1) {
+    assert den1 != 0; // check precondition
+    this.num = num1;
+    this.den = den1;
+    invariant();
+    this.maxDiv = maxDiv(num1, den1);
+	num /= maxDiv;
+	den /= maxDiv;
     assert invariant(); // check object invariant
   }
 
@@ -44,6 +47,27 @@ public class Fraction implements Comparable<Fraction>
 		den *= -1;
 	}
     return den > 0 && den != 0;   // O denominador não pode ser nulo!
+  }
+  
+  //method to calculate all common divisors
+  // of two given numbers
+  // a, b --> input integer numbers
+  public int maxDiv(int n1, int n2) {
+	  
+	  if(n1 == 0) return n2; // if numerator is 0, return denominator
+	  
+	  int r=0, a, b;
+	  a = (n1 > n2) ? n1 : n2; // n1 is greater number  
+	  b = (n1 < n2) ? n1 : n2; // n2 is smaller number  
+	  r = b;
+	  
+	  while(a % b != 0)  
+	  {  
+		  r = a % b;  
+		  a = b;  
+		  b = r;  
+	  }		
+	  return r > 0 ? r : -r;  
   }
 
   /** Converte uma string numa fração.

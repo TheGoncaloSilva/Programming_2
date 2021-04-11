@@ -3,6 +3,7 @@ package Aula_04;
 
 import static java.lang.System.*;
 import java.util.Arrays;
+import Aula_04_ex_4_7.Fraction;
 
 /**
  * Testes do tipo de dados Fraction.
