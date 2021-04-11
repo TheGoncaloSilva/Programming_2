@@ -13,10 +13,14 @@ package Aula_04;
  * 2007--2018
  */
 
-public class Fraction
+// public class Fraction
+// trocar com o comparable para dizer que é preciso comparar os elementos. Usando isto é possivel usar a função Arrays.sort
+public class Fraction implements Comparable<Fraction>
 {
   private int num;
   private int den;
+  public static Fraction ZERO = new Fraction(0, 1);
+  public static Fraction ONE = new Fraction(1, 1);
 
   /** Cria uma nova fração a partir de um par (numerador, denominador).
    *  @param num numerador da nova fração.
@@ -40,6 +44,12 @@ public class Fraction
 		den *= -1;
 	}
     return den > 0 && den != 0;   // O denominador não pode ser nulo!
+  }
+  
+  public Fraction maxDiv(int num, int den) {
+	  
+	  
+	return null;
   }
 
   /** Converte uma string numa fração.
@@ -110,10 +120,10 @@ public class Fraction
 	double result;
 	if(n >= d) {
 		result = n / d;
-		assert result * (d) == (n) : "Problemas na divisão";
+		//assert result * (d) == (n) : "Problemas na divisão"; --> Test if the result isn't 0
 	}else {
 		result = d / n;
-		assert result * (n) == (d) : "Problemas na divisão";
+		//assert result * (n) == (d) : "Problemas na divisão"; --> Test if the result isn't 0
 	}
 	return new Fraction(num * b.den, den * b.num);
   }
@@ -132,8 +142,11 @@ public class Fraction
   }
 
   public int compareTo(Fraction b) {
-	return den;
-    //...
+	  int op1 = b.num / b.den;
+	  int op2 = num / den;
+	  if(op1 > op2) return -1;
+	  else if(op1 == op2) return 0;
+	  else return 1;
   }
 
 }
