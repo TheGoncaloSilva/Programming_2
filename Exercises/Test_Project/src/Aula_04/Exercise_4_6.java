@@ -1,3 +1,4 @@
+/* For information about the exercise, check the folder class_contents */
 package Aula_04;
 
 import static java.lang.System.*;
