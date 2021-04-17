@@ -38,7 +38,7 @@ public class Exercise_5_3 {
 		PrintWriter pwf = new PrintWriter(fout);
 		int aux = 0;
 
-		if(fOutRead.hasNextLine()) {
+		if(fOutRead.hasNextLine()) { // -> Tirar duvida com o stor
 			out.println("The file " + files[1] + " contains data that is about to be overwritten. Do you wish to continue the operation? (S/N)");
 			while(true) {
 				String command = in.nextLine();
