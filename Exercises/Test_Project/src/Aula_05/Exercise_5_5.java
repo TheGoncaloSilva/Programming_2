@@ -42,8 +42,9 @@ public class Exercise_5_5 {
 				}else {
 					err.println("value not in range!");
 				}
-			} catch (InputMismatchException e) { // Tirar dúvida com o stor aqui
+			} catch (InputMismatchException e) {
 				err.println("Invalid Type!");
+				in.nextLine();
 			}
 		}while(true);
  		

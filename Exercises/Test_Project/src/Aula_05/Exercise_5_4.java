@@ -17,14 +17,13 @@ public class Exercise_5_4 {
 	}
 	
     public static void listaDir(String nomeDir) { //listar o diretório atual, usado apenas para testes
-        String[] lista;
+        File[] lista;
         File fin1 = new File(nomeDir);
 		if (fin1.isDirectory()){
-		    lista = fin1.list();   // devolve array de strings com nomes ficheiro
+		    lista = fin1.listFiles();   // devolve array de strings com nomes ficheiro
 		    int dir = 1, file = 1;
-		    for (String n : lista) { // Dúvida, perguntar ao stor
-				File f = new File(n);
-				System.out.printf("%-30s %s %s\n", n, fileType(f), f.isDirectory()? "./DIR" + dir++ : "./File" + file++);
+		    for (File f : lista) { // Dúvida, perguntar ao stor
+				System.out.printf("%-50s %s %s\n", f, fileType(f), f.isDirectory()? "./DIR" + dir++ : "./File" + file++);
 		    }
 		}else {
 			err.println("ERROR: The provided path needs to be a directory");

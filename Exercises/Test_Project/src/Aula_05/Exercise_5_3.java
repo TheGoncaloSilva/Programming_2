@@ -35,7 +35,7 @@ public class Exercise_5_3 {
 		Scanner fRead = new Scanner(fin);
 		File fout = new File(files[1]);
 		Scanner fOutRead = new Scanner(fout);
-		PrintWriter pwf = new PrintWriter(fout);
+
 		int aux = 0;
 
 		if(fOutRead.hasNextLine()) { // -> Tirar duvida com o stor
@@ -52,6 +52,8 @@ public class Exercise_5_3 {
 				}
 			}
 		}
+		fOutRead.close();
+		PrintWriter pwf = new PrintWriter(fout);
 		
 		while(fRead.hasNextLine()) {
 			String line = fRead.nextLine();
@@ -63,7 +65,7 @@ public class Exercise_5_3 {
 		}else {
 			out.println("No Data to save");
 		}
-		fOutRead.close();
+		
 		fRead.close();
 		pwf.close();
 	}
