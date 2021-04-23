@@ -22,7 +22,7 @@ public class Exercise_5_4 {
 		if (fin1.isDirectory()){
 		    lista = fin1.listFiles();   // devolve array de strings com nomes ficheiro
 		    int dir = 1, file = 1;
-		    for (File f : lista) { // Dúvida, perguntar ao stor
+		    for (File f : lista) {
 				System.out.printf("%-50s %s %s\n", f, fileType(f), f.isDirectory()? "./DIR" + dir++ : "./File" + file++);
 		    }
 		}else {
