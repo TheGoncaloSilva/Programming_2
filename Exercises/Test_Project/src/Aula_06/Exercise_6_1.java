@@ -1,7 +1,6 @@
 /* For information about the exercise, check the folder class_contents */
 // Needs to be ran with -ea
 // Number needs to be provided with command line in run configurations
-// Completar para a alínea B 
 package Aula_06;
 
 import static java.lang.System.*;

@@ -26,7 +26,7 @@ public class Exercise_6_1_1 {
 	      int n = Integer.parseInt(args[i]);
 	      long time = nanoTime();  // System.nanoTime() gives the time in ns.
 	      int f;
-	      if(memo[i].search(n, memo, 0)) {
+	      if(record.search(n, memo, 0)) {
 	    	  f = memo[i].result();
 	      }else { 
 	    	  f = fibonacci(n);
@@ -62,7 +62,7 @@ class record{
 	
 	public int result() { return result;}
 	
-	public boolean search(int n, record[] memo, int p) {
+	public static boolean search(int n, record[] memo, int p) {
 		if(memo.equals(n)) {
 			return true;
 		}
