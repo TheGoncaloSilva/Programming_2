@@ -51,7 +51,7 @@ public class Exercise_6_6 {
 	// Tamanho total = tamanho * tamanho * tamanho
 	// criar um array com as letras de alpha
 	// criar outro array com a combinação de duas silabas e outro com tres
-	// a,b,c => aa,ab,ac,ba,bb,bc,ca,cb,cc...
+	// a,b,c => aa,ab,ac,ba,bb,bc,ca,cb,cc... 
 	public static String[] allNgrams(String alpha, int n) {
 	    assert n >= 0;
 	    int l = (int) Math.pow(2, alpha.length() + 1);
