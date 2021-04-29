@@ -27,8 +27,8 @@ public class Exercise_6_6 {
 	    }
 	    String[] a;
 	    // Crie a função allNgrams e altere a invocação abaixo...
-	    out.println(Arrays.toString(all3grams(args[0])));
-	    out.println(Arrays.toString(allNgrams(args[0], N)));
+	    out.println("Interactive : " + Arrays.toString(all3grams(args[0])));
+	    out.println("Recursive : " + Arrays.toString(allNgrams(args[0], N)));
 	  }
 
 	  // Gera todos os arranjos de 3 símbolos escolhidos do alfabeto alpha.
@@ -46,6 +46,8 @@ public class Exercise_6_6 {
 	    assert n == arr.length;
 	    return arr;
 	  }
+	
+	public static String[] allValues = new String[1];
 
 	// Gera todos os N-gramas de símbolos escolhidos do alfabeto alpha.
 	// Tamanho total = tamanho * tamanho * tamanho
@@ -54,16 +56,20 @@ public class Exercise_6_6 {
 	// a,b,c => aa,ab,ac,ba,bb,bc,ca,cb,cc... 
 	public static String[] allNgrams(String alpha, int n) {
 	    assert n >= 0;
-	    int l = (int) Math.pow(2, alpha.length() + 1);
-	    if(n < alpha.length()) {
-	    	char ch = alpha.charAt(0);
-	    	String tail = alpha.substring(1);
-	    	
-	    	System.out.println();
+	    if(n == 0) {
+	    	return new String[] {""};
 	    }
 	    
-	    return null;
-	    //return new String[] {}   ;
+	    String[] prefix = allNgrams(alpha, n - 1);
+	    String[] values = new String[prefix.length * alpha.length()];
+	    int k = 0;
+	    for(int i = 0; i < prefix.length; i++) {
+	    	for(int j = 0; j < alpha.length(); j++) {
+	    		values[k++] = prefix[i] + alpha.charAt(j);
+	    	}
+	    }
+	    assert k == values.length : "Some error occurred";
+	    return values;
 	  }
 	}
 
