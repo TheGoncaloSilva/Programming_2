@@ -20,7 +20,7 @@ public class Exercise_7_2 {
 	
 	    out.println(cln.first());
 	
-	    LinkedList<Integer> rev = cln.reverse();
+	    /*LinkedList<Integer> rev = cln.reverse();
 	
 	    out.println(rev.first());
 	
@@ -35,6 +35,6 @@ public class Exercise_7_2 {
 	    LinkedList<Integer> conc = rev.concatenate(another);
 	
 	    for(int p=0; p<conc.size(); p++) 
-	      out.println(conc.get(p));
+	      out.println(conc.get(p));*/
 	  }
 }
