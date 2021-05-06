@@ -24,6 +24,7 @@ public class Exercise_7_1 {
 	      for(int i = 0; i < 3; i++) {
 	    	  list[i] = new LinkedList();
 	      }
+
 	      //LinkedList<String>[] list = (LinkedList<String>[]) new LinkedList[] { new LinkedList(), new LinkedList(), new LinkedList()};
 	      
 	      
@@ -47,7 +48,7 @@ public class Exercise_7_1 {
 	    	  err.println("ERROR: Exception found : " + e.getMessage());
 	    	  exit(1);
 	      }
-	      
+	      out.printf("C3) %d\n", list[0].count("lata"));
 
 	      // Escrever conteúdo das listas...
 	      out.println("Curtas---|---------|---------|---------|---------");

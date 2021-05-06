@@ -112,6 +112,27 @@ public class LinkedList<E> {
       print(n.next);
     }
   }
+  
+ /* public boolean count(E e) { 
+	    return contains(first, e); 
+	  }
+	  private int count(Node<E> n, E e) {
+	    if (n == null) return false;
+	    if (n.elem==null) return e==null; //dispensável, se impedirmos elem==null
+	    if (n.elem.equals(e)) return true; 
+	    return count(n.next, e);
+	  }*/
+  
+  public int count(E x) {
+	  int count = 0;
+	  if (this != null) {
+		  System.out.println(first.elem);
+		  if(first.elem.toString().indexOf(x.toString()) > 0)
+			  count++;
+	      print(first.next);
+	    }  
+      return count;
+   }
 
   // funções adicionais pedidas no guião...
   public LinkedList<E> clone() {
