@@ -113,16 +113,6 @@ public class LinkedList<E> {
     }
   }
   
- /* public boolean count(E e) { 
-	    return contains(first, e); 
-	  }
-	  private int count(Node<E> n, E e) {
-	    if (n == null) return false;
-	    if (n.elem==null) return e==null; //dispensável, se impedirmos elem==null
-	    if (n.elem.equals(e)) return true; 
-	    return count(n.next, e);
-	  }*/
-  
   public int count(E x) {
 	  int count = 0;
 	  if (this != null) {
@@ -134,10 +124,29 @@ public class LinkedList<E> {
       return count;
    }
 
-  // funções adicionais pedidas no guião...
+  // Função para clonar a lista<
+  /*public LinkedList<E> clone() {
+	  if (isEmpty())
+		  return null;
+	  LinkedList<E> aux = this;
+	  return aux; 
+  }*/
+  
   public LinkedList<E> clone() {
-	  LinkedList<E> aux = this; 
-	  return aux;
+	  if (isEmpty())
+		  return null;
+	  LinkedList<E> aux = new LinkedList<E>();
+	  aux = clone(first, aux);
+	  return aux; 
+  }
+  
+  public LinkedList<E> clone(Node<E> n, LinkedList<E> lst) {
+	  if(n != null) {
+		  lst.addFirst(n.elem);
+		  lst.size++;
+		  return clone(n.next, lst);
+	  }
+	  return lst; 
   }
   
   

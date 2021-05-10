@@ -19,12 +19,13 @@ public class Exercise_7_2 {
 	    LinkedList<Integer> cln = lst.clone();
 	
 	    out.println(cln.first());
-	
-	    /*LinkedList<Integer> rev = cln.reverse();
+	    /*
+	    LinkedList<Integer> rev = cln.reverse();
 	
 	    out.println(rev.first());
 	
 	    out.println(rev.contains(5));
+	    
 	    rev.remove(5);
 	    out.println(rev.contains(5));
 	

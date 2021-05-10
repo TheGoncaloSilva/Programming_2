@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="Submission" content="AIXX4Y9QI6MTOF53Q6P408WYE"/>
+<meta name="Time" content="2021-05-06T11:33:46Z"/>
+<meta name="ID" content="LinkedList"/>
+<meta name="User" content="edep-luco-ywit-pape"/>
+<meta name="Problem" content="ext/2105052134c5po1yfcgebhfexicdx0hivsb"/>
+<meta name="Elapsed" content="14351 ms"/>
+<style type="text/css">
+.header {font-weight: bold; font-size: 1.2em; }
+.item {font-weight: bold;}
+.pass {color: green;}
+.fail {color: red;}
+.note {color: blue; font-weight: bold;}
+table.file td {padding-right: 1em; background: #FFF; }
+.linenumber {color: gray;}
+.footnote {font-size: 0.7em;}
+table {font-size: 0.9em;}
+td, th { background: #EEE; margin: 0.5em; padding: 0.25em;}
+table.output td {vertical-align: top;}
+div.footnotes { border-top: 1px solid gray; padding-top: 0.5em; }
+</style>
+<title>Report</title>
+</head>
+<body>
+<p class="header run">Testing TestList.java</p>
+<div class="run">
+<p class="caption">Command line arguments:</p>
+<pre class="output">B</pre>
+<pre class="output">
+Initializing lists with addLast --- 
+lst0: [] size=0 first=- last=-
+lst1: [one] size=1 first=one last=one
+lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19] size=13 first=13 last=19
+B) addFirst -------------------
+B1) lst0: [zero] size=1 first=zero last=zero
+B2) lst1: [two, one] size=2 first=two last=one
+B3) lst: [113, 112, 111, 13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19] size=16 first=113 last=19
+</pre>
+<span class="pass">pass </span><p class="caption">Command line arguments:</p>
+<pre class="output">C</pre>
+<pre class="output">
+Initializing lists with addLast --- 
+lst0: [] size=0 first=- last=-
+lst1: [one] size=1 first=one last=one
+lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19] size=13 first=13 last=19
+C) count -------------------
+C1) 0
+C2) lst0: [] size=0 first=- last=-
+C3) 1
+C4) 2
+C5) 2
+C6) 0
+C7) lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19] size=13 first=13 last=19
+</pre>
+<span class="pass">pass </span><p class="caption">Command line arguments:</p>
+<pre class="output">D</pre>
+<pre class="output">
+Initializing lists with addLast --- 
+lst0: [] size=0 first=- last=-
+lst1: [one] size=1 first=one last=one
+lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19] size=13 first=13 last=19
+D) remove -------------------
+D1) lst1: [] size=0 first=- last=-
+D2) lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 1, 19] size=12 first=13 last=19
+D3) lst: [13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 1] size=11 first=13 last=1
+D4) lst: [1, 14, 2, 15, 3, 16, 3, 17, 2, 1] size=10 first=1 last=1
+</pre>
+<span class="pass">pass </span></div>
+<p class="header studentFiles">Submitted files</p>
+<div class="studentFiles">
+<p class="caption">LinkedList.java:</p>
+<pre class="output">
+public class LinkedList&lt;E&gt; {
+
+   private Node&lt;E&gt; first = null;
+   private Node&lt;E&gt; last = null;
+   private int size = 0;
+
+   /** Constructor, empty so far.   */
+   public LinkedList() { }
+
+   /** List size.  */
+   public int size() { return size; }
+
+   /** Checks if the list is empty.  */
+   public boolean isEmpty() { return size == 0; }
+
+   /** First element.  */
+   public E first() {
+      assert !isEmpty(): "Should not be empty!";
+      return first.elem;
+   }
+
+   /** Last element.  */
+   public E last() {
+      assert !isEmpty(): "Should not be empty!";
+      return last.elem;
+   }
+
+   /** Clear list. */
+   public void clear() {
+      first = last = null;
+      size = 0;
+      // post-condition:
+      assert isEmpty();
+   }
+
+   /** String representation of list.
+    * @return string like "[E0, E1, ...]", where Ek are the elements of the list
+    */
+   public String toString() {
+      String sep = "";
+      String s = "";
+      for (Node&lt;E&gt; n = first; n != null; n = n.next) {
+         s += sep + n.elem;
+         sep = ", ";
+      }
+      return "[" + s + "]";
+   }
+
+   /** Check if the given element exists in the list.
+    * @param x the element to search for
+    * @return {@code true} if the element exists and {@code false} otherwise
+    */
+   public boolean contains(E x) {
+      return contains(first, x);
+   }
+   // Auxiliary function:
+   // Check if x exists in sublist starting at node n.
+   private boolean contains(Node&lt;E&gt; n, E x) {
+      if (n == null) return false;
+      if (n.elem == x || n.elem.equals(x)) return true;
+      return contains(n.next, x);
+   }
+
+   // Mostra a lista (e alguns detalhes internos).
+   public void show(String name) {
+      System.out.printf("%s: %s size=%d first=%s last=%s\n",
+         name, this.toString(), size,
+         first==null? "-": first.elem,
+         last==null? "-": last.elem);
+   }
+
+   /** Adds a new element to the end of the list. */
+   public void addLast(E e) {
+      Node&lt;E&gt; newest = new Node&lt;E&gt;(e);
+      if (isEmpty())
+         first = newest;
+      else
+         last.next = newest;
+      last = newest;
+      size++;
+      // post-condition:
+      assert !isEmpty(): "Should not be empty!";
+      assert last() == e : "Last element should be e!";
+   }
+
+   /** Removes the first element in the list. */
+   public void removeFirst() {
+      assert !isEmpty(): "Should not be empty!";
+      first = first.next;
+      size--;
+      if (isEmpty())
+         last = null;
+   }
+
+   // `addFirst(e)`
+   // acrescenta o elemento `e` no início da lista,
+   // mas mantém os restantes elementos intactos.
+   public void addFirst(E e) {
+      first = new Node&lt;&gt;(e, first);
+      if(isEmpty())
+         last = first;
+      size++;
+      
+      assert !isEmpty(): "empty!";
+      assert first().equals(e) : "wrong element";
+   }
+
+   // `count(x)`
+   // Determina e devolve quantos elementos da lista são _iguais_ a `x`.
+   // Naturalmente, a lista não deve ser modificada por esta operação.
+   public int count(E x) {
+      if(size==0) return 0;
+      return count(first, x, 0);
+   }
+   
+   public int count(Node&lt;E&gt; n, E x, int c){
+      if(n==null) return c;
+      if(n.elem==x) return count(n.next, x, c+1);
+      return count(n.next, x, c);
+   }
+
+   // `remove(p)`
+   // Elimina o elemento da posição `p` da lista.
+   // Por exemplo, `remove(0)` deve eliminar o primeiro elemento da lista.
+   public void remove(int p) {
+      assert 0&lt;=p &amp;&amp; p&lt;size : "Index out of bounds";
+      if(p==0){
+         first = first.next;
+         size--;
+         if(size==0) last = first;
+         return;
+      }
+      Node&lt;E&gt; n = first;
+      int i = 0;
+      while(n!=null){
+         if(i+1==p){
+            if(i+1==size-1){
+               n.next = null;
+               last = n;
+            }else{
+               n.next = n.next.next;
+            }
+            break;
+         }
+         n = n.next;
+         i++;
+      }
+      size--;
+   }
+
+
+}</pre>
+<p class="caption">TestList.java:</p>
+<pre class="output">import static java.lang.System.*;
+import java.util.Arrays;
+
+public class TestList
+{
+   // Lists for testing
+   private static LinkedList&lt;String&gt; lst0;
+   private static LinkedList&lt;String&gt; lst1;
+   private static LinkedList&lt;Integer&gt; lst;
+
+   public static void main(String[] args)
+   {
+      initLists();
+      
+      switch (args[0]) {
+
+      case "B":
+         out.println("B) addFirst -------------------");
+         lst0.addFirst("zero");
+         lst0.show("B1) lst0");
+         lst1.addFirst("two");
+         lst1.show("B2) lst1");
+         for(int i=111; i&lt;=113; i++) {
+            lst.addFirst(i);
+         }
+         lst.show("B3) lst");
+         break;
+
+      case "C":
+         out.println("C) count -------------------");
+         out.printf("C1) %d\n", lst0.count("wally") );
+         lst0.show("C2) lst0");
+         out.printf("C3) %d\n", lst.count(19) );
+         out.printf("C4) %d\n", lst.count(2) );
+         out.printf("C5) %d\n", lst.count(3) );
+         out.printf("C6) %d\n", lst.count(99) );
+         lst.show("C7) lst");
+         break;
+
+      case "D":
+         out.println("D) remove -------------------");
+         lst1.remove(0);
+         lst1.show("D1) lst1");
+
+         int n = lst.size();
+         lst.remove(10);
+         lst.show("D2) lst");
+         lst.remove(lst.size()-1);
+         lst.show("D3) lst");
+         lst.remove(0);
+         lst.show("D4) lst");
+         break;
+
+      default:
+         out.println("Unknown");
+         exit(1);
+      }
+   }
+
+   static void initLists() {
+      out.println("\nInitializing lists with addLast --- ");
+      lst0 = new LinkedList&lt;String&gt;();
+      lst1 = new LinkedList&lt;String&gt;();
+      lst1.addLast("one");
+
+      lst = new LinkedList&lt;Integer&gt;();
+      int[] values = {13, 1, 14, 2, 15, 3, 16, 3, 17, 2, 18, 1, 19};
+      for(int i=0; i&lt;values.length; i++) {
+         lst.addLast(values[i]);
+      }
+
+      lst0.show("lst0");
+      lst1.show("lst1");
+      lst.show("lst");
+   }
+
+}</pre>
+</div>
+<p class="header providedFiles">Provided files</p>
+<div class="providedFiles">
+<p class="caption">Node.java:</p>
+<pre class="output">public class Node&lt;E&gt; {
+
+   final E elem;
+   Node&lt;E&gt; next;
+
+   Node(E e, Node&lt;E&gt; n) {
+      elem = e;
+      next = n;
+   }
+
+   Node(E e) {
+      elem = e;
+      next = null;
+   }
+
+}
+
+</pre>
+</div>
+<p class="header score">Score</p>
+<div class="score">
+<p class="score">3/3</p>
+</div>
+<div class="footnotes"><div class="footnote">2021-05-06T11:33:46Z</div>
+</div>
+</body></html>
