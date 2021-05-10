@@ -113,7 +113,8 @@ public class LinkedList<E> {
     }
   }
   
-  public int count(E x) {
+  /* Função de count para treinar
+   * public int count(E x) {
 	  int count = 0;
 	  if (this != null) {
 		  System.out.println(first.elem);
@@ -122,16 +123,9 @@ public class LinkedList<E> {
 	      print(first.next);
 	    }  
       return count;
-   }
+   }*/
 
-  // Função para clonar a lista<
-  /*public LinkedList<E> clone() {
-	  if (isEmpty())
-		  return null;
-	  LinkedList<E> aux = this;
-	  return aux; 
-  }*/
-  
+  // Função para clonar a lista (Devolve um lista nova na mesma sequência)
   public LinkedList<E> clone() {
 	  if (isEmpty())
 		  return null;
@@ -140,15 +134,114 @@ public class LinkedList<E> {
 	  return aux; 
   }
   
-  public LinkedList<E> clone(Node<E> n, LinkedList<E> lst) {
+  private LinkedList<E> clone(Node<E> n, LinkedList<E> lst) {
 	  if(n != null) {
-		  lst.addFirst(n.elem);
-		  lst.size++;
+		  lst.addLast(n.elem);
+		  //lst.size++;
 		  return clone(n.next, lst);
 	  }
 	  return lst; 
   }
   
+  //Devolver uma nova lista em ordem inversa
+  public LinkedList<E> reverse(){
+	  if (isEmpty())
+		  return null;
+	  
+	  LinkedList<E> aux = new LinkedList<E>();
+	  aux = reverse(first, aux);
+	  return aux; 
+  }
   
+  private LinkedList<E> reverse(Node<E> n, LinkedList<E> lst){
+	  if(n != null) {
+		  lst.addFirst(n.elem);
+		  //lst.size++;
+		  return reverse(n.next, lst);
+	  }
+	  return lst; 
+  }
+  
+  // Devolve o elemento na posição indicada
+  public E get(int pos) {
+	  assert pos >= 0 && pos < this.size() : "Invalid Position";
+	  return get(first, pos, 0);
+  }
+  
+  private E get(Node<E> n, int pos, int cicle) {
+	  if(pos == cicle) return n.elem;
+	  return get(n.next, pos, cicle += 1);
+  }
+  
+  // Devolve uma nova lista com os elementos da lista que chama o método, seguido dos elementos da lista fornecida como argument
+  // Iteractive version
+  public LinkedList<E> concatenate(LinkedList<E> lst){
+	  if(lst.isEmpty() && this.isEmpty())
+		  return null;
+	  
+	  LinkedList<E> aux = new LinkedList<E>();
+	  
+	  Node<E> n = this.first;
+	  for(int i = 0; i < this.size(); i++) {
+		  aux.addLast(n.elem);
+		  n = n.next;
+	  }
+	  
+	  n = lst.first;
+	  for(int i = 0; i < lst.size(); i++) {
+		  aux.addLast(n.elem);
+		  n = n.next;
+	  }
+	  
+	  return aux;
+  }
+  
+  // remove(e)
+  // Elimina a primeira ocorrência do elemento.
+  // Por exemplo, remove("batata") deve eliminar o primeiro elemento "batata" da lista.
+  public void remove(E e) {
+	  if(!isEmpty()) {
+		  remove(first, e, 0);
+	  }
+		  
+  }
+  
+  private void remove(Node<E> n, E x,int cicle) {
+	  assert x != null : "A value is required";
+	    if (n != null) {
+	        /*if(n.elem.equals(x)) {
+	        	if(cicle == 0) {
+	                first = first.next;
+	                size--;
+	                if(size==0) last = first;
+	                return;
+	        	}else if(cicle + 1 == size() - 1) {
+	        		n.next = null;
+	                last = n;
+	        	}else {
+	        		n.next = n.next.next;
+	        	}
+	        	size--;
+	        	return;
+	        	*/
+	    	if(n.elem.equals(x) && cicle == 0) {
+	    		first = first.next;
+	    		size--;
+	    		if(size==0) last = first;
+	    		return;
+	        }else if(n.next.elem.equals(x)){
+	        	if(cicle + 1 == size() - 1) {
+	        		n.next = null;
+	                last = n;
+	        	}else {
+	        		n.next = n.next.next;
+	        	}
+	        	size--;
+	        	return;
+	        }else
+	        	remove(n.next, x, cicle + 1);
+	    }
+	  
+  }
 
 }

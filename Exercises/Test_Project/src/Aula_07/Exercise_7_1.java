@@ -48,7 +48,6 @@ public class Exercise_7_1 {
 	    	  err.println("ERROR: Exception found : " + e.getMessage());
 	    	  exit(1);
 	      }
-	      out.printf("C3) %d\n", list[0].count("lata"));
 
 	      // Escrever conteúdo das listas...
 	      out.println("Curtas---|---------|---------|---------|---------");
