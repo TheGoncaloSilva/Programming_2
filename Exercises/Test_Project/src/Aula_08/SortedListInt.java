@@ -47,6 +47,17 @@ public class SortedListInt
     first = first.next;
     size--;
   }
+  
+  /** Prints all elements, one per line. */
+  public void print() {
+    print(first);
+  }
+  private void print(NodeInt n) {
+    if (n != null) {
+      System.out.println(n.elem);
+      print(n.next);
+    }
+  }
 
   /** Checks if the list is sorted.
    * @return {@code true} if sorted, {@code false} otherwise
@@ -62,15 +73,7 @@ public class SortedListInt
     return isSorted(n,n.next);
   }
   
-  public SortedListInt sort(SortedListInt list) {
-	  if(!list.isEmpty())
-		return null;
-		  
-	  //converter para array, organizar e voltar a converter para a lista (ciclo for ao contrário)
-  
-  return null;
-  }
-  }
+}
 
 
 

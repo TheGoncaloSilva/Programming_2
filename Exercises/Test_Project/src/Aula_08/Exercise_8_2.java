@@ -17,6 +17,8 @@ public class Exercise_8_2 {
 		for(int i = 0; i < args.length; i++) {
 			readFile(args[i]);
 		}
+		
+		list.print();
 
 	}
 	
