@@ -72,7 +72,56 @@ public class SortedList<E extends Comparable<E>> {
 	    return isSorted(n,n.next);
 	  }
 	  
-	}
-
-
-
+	  /** Checks if the given element exists in the list.
+	   * @param e an element
+	   * @return {@code true} if the element exists and {@code false} otherwise
+	   */
+	  public boolean contains(E e) { 
+	    return contains(first, e); 
+	  }
+	  private boolean contains(Node<E> n, E e) {
+	    if (n == null) return false;
+	    if (n.elem==null) return e==null; //dispensável, se impedirmos elem==null
+	    if (n.elem.equals(e)) return true; 
+	    return contains(n.next, e);
+	  }
+	  
+	  /** String representation of list.
+	  * @return string like "[E0, E1, ...]", where Ek are the elements of the list
+	  */
+	  public String toString() {
+		String sep = "";
+	    String s = "";
+	    for (Node<E> n = first; n != null; n = n.next) {
+	    	s += sep + n.elem;
+	        sep = ", ";
+	    }
+	    return "[" + s + "]";
+	   }
+	  
+	  // Returns a new sorted list with the elements of two lists
+	  // Recursive solution version
+	  public SortedList<E> merge(SortedList<E> lst){
+		  if(lst.isEmpty() && this.isEmpty())
+			  return null;
+		  
+		  SortedList<E> aux = new SortedList<E>();
+		  
+		  merge(this, this.first, aux, 0);
+		  
+		  merge(lst, lst.first, aux, 0);
+		  
+		  return aux;
+	  }
+	  
+	  private SortedList<E> merge(SortedList<E> lst1, Node<E> n, SortedList<E> lst2, int cicle){
+		  if(cicle < lst1.size()) {
+			  lst2.insert(n.elem);
+			  merge(lst1, n.next, lst2, cicle += 1);
+		  }
+		  return lst2;
+	  }
+	  
+	  
+	   
+}

@@ -33,7 +33,7 @@ public class Exercise_8_4 {
 	    lst2.insert(999);
 	    lst2.insert(9);
 	    lst2.insert(99);
-	    /*
+	    
 	    // Test contains
 	    assert lst2.contains(999);
 	    assert lst2.contains(9);
@@ -45,12 +45,12 @@ public class Exercise_8_4 {
 	    out.println(lst1.contains(30));
 
 	    // Comente/descomente as instruções para testar cada método...
-
+	    
 	    // Test toString
 	    out.printf("lst1: %s\n", lst1.toString());
 	    out.printf("lst2: %s\n", lst2.toString());
 	    assert lst2.toString().equals("[9, 99, 999]");
-
+	    
 	    // Test merge
 	    SortedList<Integer> lst3 = lst1.merge(lst2);
 	    out.printf("lst3: %s\n", lst3);
@@ -73,7 +73,7 @@ public class Exercise_8_4 {
 	    while (!lst2.isEmpty()) {
 	    	assert lst3.contains(lst2.first());
 	    	lst2.removeFirst();
-	    }*/
+	    }
 	}
 	
 	/** Check if program is being run with -ea, exit if not. */
