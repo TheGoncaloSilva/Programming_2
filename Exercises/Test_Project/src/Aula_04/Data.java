@@ -121,5 +121,9 @@ public class Data {
     assert dataValida(dia, mes, ano)  : "Data inválida";
   }
 
+public static Data parseData(String string) {
+	return new Data(string);
+}
+
 }
 
