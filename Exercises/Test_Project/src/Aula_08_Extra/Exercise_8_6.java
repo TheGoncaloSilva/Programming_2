@@ -27,7 +27,8 @@ public class Exercise_8_6 {
 			case "-": // remove first element
 				lst1.removeFirst(); break;
 			default:  // insert value
-				lst1.insert(Integer.parseInt(arg)); break;
+				lst1.insert(Integer.parseInt(arg));
+				System.out.println("Debug: " + lst1.toString()); break;
 			}
 	    }
 	    out.println(lst1.isSorted());
@@ -54,7 +55,8 @@ public class Exercise_8_6 {
 	    // Test toString
 	    out.printf("lst1: %s\n", lst1.toString());
 	    out.printf("lst2: %s\n", lst2.toString());
-	    assert lst2.toString().equals("[9, 99, 999]");
+	    //assert lst2.toString().equals("[9, 99, 999]");
+	    assert lst2.toString().equals("[999, 99, 9]");
 	    
 	    // Test merge
 	    SortedArray<Integer> lst3 = lst1.merge(lst2);

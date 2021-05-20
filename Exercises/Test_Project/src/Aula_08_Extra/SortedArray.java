@@ -1,5 +1,7 @@
 package Aula_08_Extra;
 
+import java.util.Arrays;
+
 public class SortedArray<E extends Comparable<E>> {
 	private E[] array;
 	private int size = 0, maxSize = 0;
@@ -8,6 +10,7 @@ public class SortedArray<E extends Comparable<E>> {
 	public SortedArray(int s){
 		assert s >= 0 : "Value needs to be positive or neutral";
 		this.maxSize = s;
+		this.size = 0;
 		array = (E[]) new Comparable[maxSize];
 		
 	}
@@ -15,7 +18,7 @@ public class SortedArray<E extends Comparable<E>> {
 	@SuppressWarnings("unchecked")
 	public SortedArray() { this.array = (E[]) new Comparable[maxSize];  }
 	
-	public boolean isFull() {return size == maxSize - 1;}
+	public boolean isFull() {return size == maxSize;}
 	
 	/**
 	* @return Number of elements in the list
@@ -46,15 +49,35 @@ public class SortedArray<E extends Comparable<E>> {
 	
 	/** Inserts a new element in the list.
 	* @param e the element to be inserted
+	* 
+	* str1.compareTo(str2):
+	* 	Returns 0 because they are equal
+    *	Returns > 0 because str1 < str2
+    *	Returns < 0 because str1 > str2
 	*/
 	public void insert(E e) {
-		insert(0,e);
-	    size++;
+		insert(size,e);
+		System.out.println(e + " ---- " + size);
 	}
 	private void insert(int cicle, E e) {
-		if ((array[cicle] == null || e.compareTo(array[cicle]) < 0) && !isFull())
-	      array[cicle] = e;
-	    insert(cicle + 1, e);
+		//System.out.println(e + "-" + size);
+		if(cicle == 0) {
+			array[cicle] = e;
+			size++;
+			return;
+		}
+		
+		if(isFull())
+			return;
+		
+		if(e.compareTo(array[cicle - 1]) <= 0) {
+			array[cicle] = e;
+			size++;
+			return;
+		}else {
+			array[cicle] = array[cicle - 1];
+		}
+		insert(cicle - 1, e);
 	}
 	
 	/** Checks if the list is sorted.
@@ -66,9 +89,11 @@ public class SortedArray<E extends Comparable<E>> {
 	    return isSorted(0); 
 	}
 	private boolean isSorted(int n) {
+		//System.out.println("-----" + size);
+		//System.out.println(array[n]);
 	    if (array == null) return true;
 	    if(n == size - 1) return true;
-	    if (array[n + 1].compareTo(array[n]) < 0) return false;
+	    if (array[n + 1].compareTo(array[n]) > 0) return false;
 	    return isSorted(n + 1);
 	}
 	
@@ -81,9 +106,23 @@ public class SortedArray<E extends Comparable<E>> {
 	}
 	private boolean contains(int n, E e) {
 		if (array == null) return false;
+		if (n == size) return false;
 	    if (array[n] == null) return e == null; //dispensável, se impedirmos elem==null
 	    if (array[n].equals(e)) return true; 
 	    return contains(n + 1, e);
+	}
+	
+	/** String representation of list.
+	* @return string like "[E0, E1, ...]", where Ek are the elements of the list
+	*/
+	public String toString() {
+		String sep = "";
+	    String s = "";
+	    for (int n = 0; n < size(); n++) {
+	    	s += sep + array[n];
+	        sep = ", ";
+	    }
+	    return "[" + s + "]";
 	}
 	
 	// Returns a new sorted list with the elements of two lists
