@@ -16,6 +16,7 @@ public class Exercise_11_1 {
 		assert args.length > 0 : "The file must be provided";
 		Scanner sc = new Scanner(System.in);
 		KeyValueList<String> list = readFile(args[0]);
+		
 		while(true) {
 			out.print("Username: ");
 			String user = sc.nextLine();
