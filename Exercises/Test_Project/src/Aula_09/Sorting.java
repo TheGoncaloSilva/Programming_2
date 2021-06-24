@@ -88,10 +88,18 @@ public class Sorting {
 		a[j] = temp;
 	}
 
-
 	public static void insertionSort(int[] a, int start, int end) {
-		//...
-
+		assert validSubarray(a, start, end);
+		
+		for (int i = start+1; i < end; i++) {
+			int j;
+			int v = a[i];
+			for(j = i-1; j >= start && a[j] > v; j--)
+				a[j+1] = a[j];
+			a[j+1] = v;
+		}
+		
+		assert isSorted(a, start, end);
 	}
 
 	public static void mergeSort(int[] a, int start, int end) {
@@ -136,14 +144,11 @@ public class Sorting {
 	    return result;
 	}
 
-
-
 	// Generic method for sorting arrays of any reference type:
-	public static <E extends Comparable<E>>
-	void mergeSort(E[] a, int start, int end) {
+	public static <E extends Comparable<E>> void mergeSort(E[] a, int start, int end) {
 		//...
-
 	}
+	
 
 }
 

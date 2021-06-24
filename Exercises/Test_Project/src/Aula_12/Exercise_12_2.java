@@ -25,10 +25,10 @@ public class Exercise_12_2 {
 	    	in.nextLine();
 
 	    	int op = 0;
-	    	if (smarket.numOrders()>0) { // if there are orders to serve,
+	    	//if (smarket.numOrders()>0) { // if there are orders to serve,
 	    		// randomly choose whether to enter or serve an order
-	    		op = myRandom(2);
-	    	}
+	    	//	op = myRandom(2);
+	    	//}
 	      
 	    	if (op == 0) { // create and enter a random order!
 	    		int p = myRandom(products.length);
@@ -38,8 +38,8 @@ public class Exercise_12_2 {
 	    		smarket.enterOrder(order);
 	    		out.println("Enter order: " + order.toString());
 	    	}else { // serve!
-	    		Order order = smarket.serveOrder();
-	    		out.println("Serve order: " + order.toString());
+	    		//Order order = smarket.serveOrder();
+	    		//out.println("Serve order: " + order.toString());
 	    	}
 	    	smarket.displayOrders();
 	    }
