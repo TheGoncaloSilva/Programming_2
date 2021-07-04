@@ -15,8 +15,8 @@ public class Sorting {
 	public static double elapsedTime;  // seconds elapsed in latest measurement
 
 	// Fields to count operations: 
-	public static long assignmentCount = 0L;
-	public static long comparisonCount = 0L;
+	public static long assignmentCount = 0L; // Counting attribution of values to elements
+	public static long comparisonCount = 0L; // Counting comparisons between array elements
 
 	// Start a new measurement
 	public static void startMeasuring() {
@@ -46,6 +46,7 @@ public class Sorting {
 
 		for (int i=start; i<end-1; i++) { // For each element (except the last):
 			for (int j=i+1; j<end; j++) {   // Scan every following element
+				comparisonCount++;
 				if (a[j] < a[i]) {            // compare them
 					swap(a, i, j);              // if necessary, swap them
 				}
@@ -64,6 +65,7 @@ public class Sorting {
 		while (start < end-1) {
 			int last = start;
 			for (int i=start; i<end-1; i++) {
+				comparisonCount++;
 				if (a[i] > a[i+1]) {
 					swap(a, i, i+1);
 					last = i;   // store index of the last swap
@@ -84,8 +86,11 @@ public class Sorting {
 	*/
 	public static void swap(int[] a, int i, int j) {
 		int temp = a[i];
+		assignmentCount++;
 		a[i] = a[j];
+		assignmentCount++;
 		a[j] = temp;
+		assignmentCount++;
 	}
 
 	public static void insertionSort(int[] a, int start, int end) {
@@ -94,8 +99,12 @@ public class Sorting {
 		for (int i = start+1; i < end; i++) {
 			int j;
 			int v = a[i];
-			for(j = i-1; j >= start && a[j] > v; j--)
+			assignmentCount++;
+			for(j = i-1; j >= start && a[j] > v; j--) {comparisonCount++;
+				assignmentCount++;
 				a[j+1] = a[j];
+			}
+			assignmentCount++;
 			a[j+1] = v;
 		}
 		
@@ -119,15 +128,47 @@ public class Sorting {
 		int i2 = middle;
 		int j = 0;
 		while (i1 < middle && i2 < end) {
+			comparisonCount++;
 			if (a[i1] < a[i2])
 				b[j++] = a[i1++];
 			else
 				b[j++] = a[i2++];
+			assignmentCount++;
 		}
-		while (i1 < middle)
+		while (i1 < middle) {
 			b[j++] = a[i1++];
-		while(i2 < end)
+			assignmentCount++;
+		}
+		while(i2 < end) {
 			b[j++] = a[i2++];
+			assignmentCount++;
+		}
+		arraycopy(b, 0, a, start, end-start);
+	}
+	
+	// Generic Function
+	@SuppressWarnings("unchecked")
+	public static <E> void mergeSubarrays(E[] a, int start, int middle, int end) {
+		E[] b = (E[]) new Object[end-start]; // auxiliary array of generics
+		int i1 = start;
+		int i2 = middle;
+		int j = 0;
+		while (i1 < middle && i2 < end) {
+			comparisonCount++;
+			if (a[i1].toString().compareTo(a[i2].toString()) < 0)
+				b[j++] = a[i1++];
+			else
+				b[j++] = a[i2++];
+			assignmentCount++;
+		}
+		while (i1 < middle) {
+			b[j++] = a[i1++];
+			assignmentCount++;
+		}
+		while(i2 < end) {
+			b[j++] = a[i2++];
+			assignmentCount++;
+		}
 		arraycopy(b, 0, a, start, end-start);
 	}
 
@@ -139,14 +180,36 @@ public class Sorting {
 	public static boolean isSorted(int[] a, int start, int end) {
 		assert validSubarray(a, start, end);
 		boolean result = true;
-		for(int i = start; result && i < end-1; i++)
+		for(int i = start; result && i < end-1; i++) {
+			comparisonCount++;
 			result = a[i] <= a[i+1];
+		}
+	    return result;
+	}
+	
+	// Generic function
+	public static <E> boolean isSorted(E[] a, int start, int end) {
+		assert a != null && 0 <= start && start <= end && end <= a.length;
+		
+		boolean result = true;
+		for(int i = start; result && i < end-1; i++) {
+			comparisonCount++;
+			result = a[i].toString().compareTo(a[i+1].toString()) <= 0;
+		}
 	    return result;
 	}
 
 	// Generic method for sorting arrays of any reference type:
 	public static <E extends Comparable<E>> void mergeSort(E[] a, int start, int end) {
-		//...
+		assert a != null && 0 <= start && start <= end && end <= a.length;
+		
+		if (end - start > 1) {
+			int middle = (start + end) / 2;
+			mergeSort(a, start, middle);
+			mergeSort(a, middle, end);
+			mergeSubarrays(a, start, middle, end);
+		}
+		assert isSorted(a, start, end);
 	}
 	
 
