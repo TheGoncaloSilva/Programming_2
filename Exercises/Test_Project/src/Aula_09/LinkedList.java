@@ -19,7 +19,7 @@ public class LinkedList<E> {
    * @return  {@code true} if list empty, otherwise {@code false}.
    */
   public boolean isEmpty() { return size == 0; }
-
+  
   /** Returns the first element in the list.
    * @return  First element in the list
    */
@@ -109,5 +109,13 @@ public class LinkedList<E> {
     if (n.elem.equals(e)) return true; 
     return contains(n.next,e);
   }
+  
+  /*
+   * Exercise 9.5 returning the Node first
+   */
+  public Node getNode() {
+	  assert !isEmpty(): "empty!";
 
+	  return first;
+  }
 }
