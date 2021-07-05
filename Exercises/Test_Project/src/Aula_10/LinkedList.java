@@ -99,6 +99,16 @@ public class LinkedList<E> {
   }
 
   // Acrescente as funções adicionais pedidas no guião...
-
+  
+  // Devolve o elemento na posição indicada
+  public E get(int pos) {
+	  assert pos >= 0 && pos < this.size() : "Invalid Position";
+	  return get(first, pos, 0);
+  }
+  
+  private E get(Node<E> n, int pos, int cicle) {
+	  if(pos == cicle) return n.elem;
+	  return get(n.next, pos, cicle += 1);
+  }
 
 }

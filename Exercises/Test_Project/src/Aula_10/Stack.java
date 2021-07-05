@@ -49,7 +49,10 @@ public class Stack<E> {
 	 *  Stack.pop loop
 	 */
 	public void clear() {
-	  
+		assert !isEmpty();
+		
+		while(!isEmpty())
+			pop();
 	}
  
 }
