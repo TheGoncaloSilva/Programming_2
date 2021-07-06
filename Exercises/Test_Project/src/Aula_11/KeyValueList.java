@@ -31,7 +31,7 @@ public class KeyValueList<E> {
 		int prev_size = size;
 		first = set(first, k, e);
 		assert contains(k) && get(k).equals(e);
-		return size>prev_size;
+		return size>=prev_size;
 	}
 	private KeyValueNode<E> set(KeyValueNode<E> n, String k, E e) {
 		if (n==null) {
@@ -127,8 +127,17 @@ public class KeyValueList<E> {
 	 */
 	public String toString(String left, String sep, String right) {
 		// Complete the function (11.2)
-		//...
-		return "";
+		if (isEmpty())
+		      return "";
+
+		StringBuilder sBuilder = new StringBuilder();
+		sBuilder.append(left);
+		for (String key : keys()) {
+			sBuilder.append("(" + key + ", " + get(key) +")" + sep);
+		}
+		sBuilder.append(right);
+
+		return sBuilder.toString();
 	}
 
 }

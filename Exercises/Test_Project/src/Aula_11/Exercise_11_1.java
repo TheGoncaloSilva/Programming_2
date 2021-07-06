@@ -20,7 +20,7 @@ public class Exercise_11_1 {
 		while(true) {
 			out.print("Username: ");
 			String user = sc.nextLine();
-			if(user == null) // Não quer ler mais
+			if(user.compareTo("exit") == 0) // Não quer ler mais
 				break;
 			out.print("Password: ");
 			String pass = sc.nextLine();
