@@ -18,6 +18,4 @@ class KeyValueNode<E> {
 		next = null;
 	}
 
-	//...
-
 }
