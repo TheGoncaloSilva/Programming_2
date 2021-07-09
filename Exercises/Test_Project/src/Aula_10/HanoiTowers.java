@@ -15,7 +15,7 @@ public class HanoiTowers {
 		
 		int i = 0;
 		for(i = 0; i < discs; i++) 
-			p1.push(i); // inicializar os discos na primeira torre
+			p1.push(discs-i); // inicializar os discos na primeira torre
 		assert i == discs;
 		showState(1);
 
@@ -24,15 +24,30 @@ public class HanoiTowers {
 	
 	public int numberOfMoves() { return m;}
 	
-	public void solve() {
-		
-		moverDiscos(discs, p1.toString(), p2.toString(), p3.toString()); // Not a great solution
-		//the right solution would be to use the stack and push / pop every element
+	public void solve(){
+		solve(p1.size(),p1,p3,p2);
+	}
+	public void solve(int n, Stack<Integer> posteInicial, Stack<Integer> posteAuxiliar, Stack<Integer> posteFinal){
+		if(n==0) {
+			if(posteInicial.size()==0) return;
+			moveDisk(posteInicial, posteFinal);
+		}else{
+			solve(n-1,posteInicial,posteFinal,posteAuxiliar);
+			if(posteInicial.size()==0) return;
+			moveDisk(posteInicial, posteFinal);
+			solve(n-1,posteAuxiliar,posteInicial,posteFinal);
+		}
 	}
 	
-	public void moveDisk(String a, String b) {
-		
+	public void moveDisk(Stack<Integer> a,Stack<Integer> b){
+		int n = a.top();
+		a.pop();
+		b.push(n);
 		m++;
+		System.out.println("\nAfter " + m + " moves:");
+		System.out.println("A: " + reverseToString(p1));
+		System.out.println("B: " + reverseToString(p2));
+		System.out.println("C: " + reverseToString(p3));
 	}
 	
 	public void showState(int moves) {
